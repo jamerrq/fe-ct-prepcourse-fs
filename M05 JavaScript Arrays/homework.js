@@ -211,8 +211,10 @@ function continueStatement(num) {
    // [PISTA]: utiliza el statement 'continue'.
    // Tu código:
    var arreglo = [];
-   for(var i = 0; i < 9; ++i){
-      var num2 = num + 2 * (i + 1);
+   var num2 = num;
+   for(var i = 0; i < 10; ++i){
+      if(i == 4)continue;
+      num2 += 2;
       arreglo.push(num2);
    }
    return arreglo;
