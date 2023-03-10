@@ -10,7 +10,7 @@ function crearGato(nombre, edad) {
    var gato = {
       nombre: nombre,
       edad: edad,
-      meow: "Meow!",
+      meow: function(){return "Meow!"},
    };
    return gato;
 }
@@ -58,13 +58,17 @@ function eliminarPropiedad(objeto, propiedad) {
    // Debes eliminarla del objeto y retornarlo finalmente.
    // Tu código:
    delete objeto["propiedad"];
+   return objeto;
 }
 
 function tieneEmail(objetoUsuario) {
    // Verifica si el "objetoUsuario", en su propiedad "email", posee un valor definido.
    // En ese caso retornar true. Caso contrario, false.
    // Tu código:
-   return objetoUsuario.hasOwnProperty("email");
+   if (objetoUsuario.hasOwnProperty("email")){
+      return Boolean(objetoUsuario["email"]);
+   }
+   return false;
 }
 
 function tienePropiedad(objeto, propiedad) {
@@ -110,6 +114,7 @@ function pasarUsuarioAPremium(objetoMuchosUsuarios) {
       var objetoi = objetoMuchosUsuarios[i];
       objetoi["esPremium"] = true;
    }
+   return objetoMuchosUsuarios;
 }
 
 function sumarLikesDeUsuario(objetoUsuario) {
@@ -136,8 +141,11 @@ function agregarMetodoCalculoDescuento(objetoProducto) {
    // PorcentajeDeDescuento ---> 0.2
    // Precio final ---> 8
    // Tu código:
-   var descuento = objetoProducto["precio"] * (1 - objetoProducto["porcentajeDeDescuento"]);
-   console.log(descuento);
+   objetoProducto["calcularPrecioDescuento"] = function(){
+      return this.precio * this.porcentajeDeDescuento;
+   }
+   var precio_final = objetoProducto["precio"] - objetoProducto["calcularPrecioDescuento"]();
+   return precio_final;
 }
 
 /*⚠️ NO MODIFIQUES NADA DEBAJO DE ESTO ⚠️*/
