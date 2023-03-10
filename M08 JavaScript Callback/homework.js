@@ -43,8 +43,8 @@ function forEach(array, cb) {
    // Debes iterar sobre el arreglo, y por cada elemento ejecutar el callback.
    // Debes pasarle el elemento como argumento al callback.
    // Tu código:
-   for(var entero in array){
-      cb(entero);
+   for(var i = 0; i < array.length; ++i){
+      cb(array[i]);
    }
 }
 
