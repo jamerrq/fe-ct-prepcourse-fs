@@ -10,7 +10,7 @@ class Persona {
       this.nombre = nombre;
       this.apellido = apellido;
       this.edad = edad;
-      this.domicilio;
+      this.domicilio = domicilio;
    }
 
    detalle(){
