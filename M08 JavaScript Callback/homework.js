@@ -54,7 +54,10 @@ function map(array, cb) {
    // Retorna el nuevo arreglo.
    // Tu código:
    var nuevo_arreglo = [];
-   for(var element in array)nuevo_arreglo.push(cb(element));
+   for(var i = 0; i < array.length; ++i){
+      var element = array[i];
+      nuevo_arreglo.push(cb(element));
+   }
    return nuevo_arreglo;
 }
 
@@ -63,7 +66,8 @@ function filter(arrayOfStrings) {
    // Luego retorna un nuevo arreglo con estos elementos.
    // Tu código:
    var nuevo_arreglo = [];
-   for(var string in arrayOfStrings){
+   for(var i = 0; i < arrayOfStrings.length; ++i){
+      var string = arrayOfStrings[i];
       if(string[0] == 'a')nuevo_arreglo.push(string);
    }
    return nuevo_arreglo;
