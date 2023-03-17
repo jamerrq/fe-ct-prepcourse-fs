@@ -6,6 +6,12 @@ function deObjetoAarray(objeto) {
    // Estos elementos debe ser cada par clave:valor del objeto recibido.
    // [EJEMPLO]: {D: 1, B: 2, C: 3} ---> [['D', 1], ['B', 2], ['C', 3]].
    // Tu código:
+   var arr = [];
+   var keys = Object.keys(objeto)
+   for(var i = 0; i < keys.length; ++i){
+      arr.push([keys[i], objeto[keys[i]]])
+   }
+   return arr;
 }
 
 function numberOfCharacters(string) {
@@ -14,6 +20,31 @@ function numberOfCharacters(string) {
    // Las letras deben estar en orden alfabético.
    // [EJEMPLO]: "adsjfdsfsfjsdjfhacabcsbajda" ---> { a: 5, b: 2, c: 2, d: 4, f: 4, h:1, j: 4, s: 5 }
    // Tu código:
+   var keys = [];
+   var nums = [];
+   string = string.split('').sort().join('');
+   var last_key = null;
+   var count = 1;
+   for(var i = 0; i < string.length; ++i){
+      if(string[i] == last_key){
+         count++;
+      }else{
+         if(last_key != null){
+            keys.push(last_key);
+            nums.push(count);
+         }
+         last_key = string[i];
+         count = 1;
+      }
+   }
+   keys.push(last_key);
+   nums.push(count);
+   //
+   var objeto = {};
+   for(var i = 0; i < keys.length; ++i){
+      objeto[keys[i]] = nums[i];
+   }
+   return objeto;
 }
 
 function capToFront(string) {
@@ -22,25 +53,62 @@ function capToFront(string) {
    // Retornar el string.
    // [EJEMPLO]: soyHENRY ---> HENRYsoy
    // Tu código:
+   var letras = string.split("");
+   var valores = letras.map((letra) => {
+      return letra.charCodeAt();
+   });
+   var mins = [];
+   var mays = [];
+   for(var i = 0; i < letras.length; ++i){
+      valor = valores[i];
+      letra = letras[i];
+      if(valor >= 97 && valor <= 122){
+         mins.push(letra);
+      }else{
+         mays.push(letra);
+      }
+   }
+   return mays.join("") + mins.join("");
 }
+
+function reverse(string){
+   return string.split("").reverse().join("");
+};
 
 function asAmirror(frase) {
    // Recibes una frase. Tu tarea es retornar un nuevo string en el que el orden de las palabras sea el mismo.
    // La diferencia es que cada palabra estará escrita al inverso.
    // [EJEMPLO]: "The Henry Challenge is close!"  ---> "ehT yrneH egnellahC si !esolc"
    // Tu código:
+   var palabras = frase.split(" ");
+   var palabrasR = palabras.map((str) => {
+      return reverse(str);
+   });
+   return palabrasR.join(" ");
 }
 
 function capicua(numero) {
    // Si el número que recibes es capicúa debes retornar el string: "Es capicua".
    // Caso contrario: "No es capicua".
    // Tu código:
+   var numero_reves = Number(reverse(String(numero)));
+   if(numero == numero_reves){
+      return "Es capicua";
+   }
+   return "No es capicua";
 }
 
 function deleteAbc(string) {
    // Tu tarea es eliminar las letras "a", "b" y "c" del string recibido.
    // Retorna el string sin estas letras.
    // Tu código:
+   var letras = string.split("");
+   var nuevas_letras = [];
+   for(var i = 0; i < letras.length; ++i){
+      var letra = letras[i];
+      if(letra != 'a' && letra != 'b' && letra != 'c')nuevas_letras.push(letra);
+   }
+   return nuevas_letras.join("");
 }
 
 function sortArray(arrayOfStrings) {
@@ -49,6 +117,10 @@ function sortArray(arrayOfStrings) {
    // de la longitud de cada string.
    // [EJEMPLO]: ["You", "are", "beautiful", "looking"]  ---> [“You", "are", "looking", "beautiful"]
    // Tu código:
+   arrayOfStrings.sort((a, b) => {
+      return a.length - b.length;
+   });
+   return arrayOfStrings;
 }
 
 function buscoInterseccion(array1, array2) {
@@ -58,6 +130,22 @@ function buscoInterseccion(array1, array2) {
    // Si no tienen elementos en común, retornar un arreglo vacío.
    // [PISTA]: los arreglos no necesariamente tienen la misma longitud.
    // Tu código:
+   array1.sort();
+   array2.sort();
+   var n1 = array1.length;
+   var n2 = array2.length;
+   var array3 = [];
+   for(var i = 0; i < Math.min(n1, n2); ++i){
+      var num1 = array1[i];
+      for(var j = 0; j < Math.min(n1, n2); ++j){
+         var num2 = array2[j];
+         if(num1 == num2){
+            array3.push(num1);
+            continue;
+         }
+      }
+   }
+   return array3;
 }
 
 /*⚠️ NO MODIFIQUES NADA DEBAJO DE ESTO ⚠️*/
